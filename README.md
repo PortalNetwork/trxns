@@ -7,7 +7,7 @@ BNS – or blockchain name system – is the protocol on the internet that turns
 
 ## 📝 Description
 
-TNS is the Tron Name Service, a distributed, open, and extensible naming system based on the Ethereum blockchain.
+TNS is the Tron Name Service, a distributed, open, and extensible naming system based on the Tron blockchain.
 
 ## 📚 Documents
 
