@@ -3,7 +3,7 @@
 > 📖🔍 Documents of the Tron Name Service.
 
 ## 💡 What is BNS?
-BNS – or blockchain name system – is the protocol on the internet that turns human-comprehensible decentralized website names such as 'website.ada' or 'mywebsite.ada' into addresses understandable by decentralized network machines.
+BNS – or blockchain name system – is the protocol on the internet that turns human-comprehensible decentralized website names such as 'website.trx' or 'mywebsite.trx' into addresses understandable by decentralized network machines.
 
 ## 📝 Description
 
