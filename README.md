@@ -1,4 +1,4 @@
-# Tron Name Service
+![Tron Name Service](./assets/trxns.png)
 
 > 📖🔍 Documents of the Tron Name Service.
 
