@@ -11,5 +11,8 @@
     "test": "source .env && tronbox test"
   },
   "author": "Portal Network",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "tronweb": "^2.6.4"
+  }
 }

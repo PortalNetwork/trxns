@@ -19,6 +19,15 @@ npm i -g tronbox
 
 ## Local testing
 
+Start docker
+
+```
+docker run -it --rm -p 9090:9090 --name tron trontools/quickstart
+```
+
+![Docker image](../assets/docker.png)
+
+Run test
 ```
 tronbox test
 ```
