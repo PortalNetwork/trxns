@@ -1,0 +1,15 @@
+{
+  "name": "trxns",
+  "version": "1.0.0",
+  "description": "Implementation of Tron Name Service",
+  "main": "tronbox-config.js",
+  "homepage": "https://github.com/PortalNetwork/trxns",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "source .env && tronbox test"
+  },
+  "author": "Portal Network",
+  "license": "MIT"
+}
