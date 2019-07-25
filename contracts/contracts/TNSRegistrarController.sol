@@ -28,6 +28,11 @@ contract TNSRegistrarController is Ownable {
     prices = _prices;
   }
 
+  function rentPrice(string memory name, uint duration) view public returns(uint) {
+    bytes32 hash = keccak256(bytes(name));
+    return prices.price(name, base.nameExpires(uint256(hash)), duration);
+  }
+
   function valid(string memory name) public view returns(bool) {
     return name.strlen() > 6;
   }
@@ -38,7 +43,7 @@ contract TNSRegistrarController is Ownable {
   }
 
   function register(string calldata name, address owner, uint duration, bytes32 secret) external payable {
-    uint cost = 0.1 ether; //rentPrice(name, duration);
+    uint cost = rentPrice(name, duration);
     require(duration >= MIN_REGISTRATION_DURATION);
     require(msg.value >= cost);
     
@@ -53,7 +58,17 @@ contract TNSRegistrarController is Ownable {
   }
 
   function renew(string calldata name, uint duration) external payable {
+    uint cost = rentPrice(name, duration);
+    require(msg.value >= cost);
 
+    bytes32 label = keccak256(bytes(name));
+    uint expires = base.renew(uint256(label), duration);
+
+    if(msg.value > cost) {
+      msg.sender.transfer(msg.value - cost);
+    }
+
+    emit NameRenewed(name, label, cost, expires);
   }
 
   function withdraw() public onlyOwner {
