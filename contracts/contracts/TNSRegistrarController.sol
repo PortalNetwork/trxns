@@ -1,5 +1,6 @@
 pragma solidity >=0.4.23 <0.6.0;
 
+import "./PriceOracle.sol";
 import "./BaseRegistrar.sol";
 import "./StringUtils.sol";
 import "./Ownable.sol";
@@ -18,10 +19,13 @@ contract TNSRegistrarController is Ownable {
   event NameRenewed(string name, bytes32 indexed label, uint cost, uint expires);
 
   BaseRegistrar base;
-  //PriceOracle prices;
+  PriceOracle prices;
 
-  constructor(BaseRegistrar _base) public {
+  uint constant public MIN_REGISTRATION_DURATION = 28 days;
+
+  constructor(BaseRegistrar _base, PriceOracle _prices) public {
     base = _base;
+    prices = _prices;
   }
 
   function valid(string memory name) public view returns(bool) {
@@ -34,7 +38,18 @@ contract TNSRegistrarController is Ownable {
   }
 
   function register(string calldata name, address owner, uint duration, bytes32 secret) external payable {
+    uint cost = 0.1 ether; //rentPrice(name, duration);
+    require(duration >= MIN_REGISTRATION_DURATION);
+    require(msg.value >= cost);
+    
+    bytes32 label = keccak256(bytes(name));
+    uint expires = base.register(uint256(label), owner, duration);
 
+    emit NameRegistered(name, label, owner, cost, expires);
+
+    if(msg.value > cost) {
+      msg.sender.transfer(msg.value - cost);
+    }
   }
 
   function renew(string calldata name, uint duration) external payable {
