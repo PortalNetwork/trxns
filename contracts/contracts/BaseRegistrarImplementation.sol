@@ -25,13 +25,9 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
     );
     bytes4 constant private RECLAIM_ID = bytes4(keccak256("reclaim(uint256,address)"));
 
-    constructor(TNS _tns, bytes32 _baseNode, uint _transferPeriodEnds) public {
-        // Require that people have time to transfer names over.
-        require(_transferPeriodEnds > now + 2 * MIGRATION_LOCK_PERIOD);
-
+    constructor(TNS _tns, bytes32 _baseNode) public {
         tns = _tns;
         baseNode = _baseNode;
-        transferPeriodEnds = _transferPeriodEnds;
     }
 
     modifier live {
@@ -85,7 +81,7 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
         }
         // Available if we're past the transfer period, or the name isn't
         // registered in the legacy registrar.
-        return now > transferPeriodEnds;
+        return true;
     }
 
     /**
