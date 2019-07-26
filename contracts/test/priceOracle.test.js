@@ -14,11 +14,11 @@ contract('StablePriceOracle', function (accounts) {
     console.log('***', priceOracle.address);
 
     var stablePriceOracle = await tronWeb.contract().at(priceOracle.address);
-    
+
     assert.equal(new BigNumber((await stablePriceOracle.price("foo", 0, 3600).call())._hex, 16).toFixed(), 1440000000000000000000);
-    //assert.equal((await priceOracle.price("quux", 0, 3600)).toNumber(), 720);
-    //assert.equal((await priceOracle.price("fubar", 0, 3600)).toNumber(), 360);
-    //assert.equal((await priceOracle.price("foobie", 0, 3600)).toNumber(), 360);
+    assert.equal(new BigNumber((await stablePriceOracle.price("quux", 0, 3600).call())._hex, 16).toFixed(), 720000000000000000000);
+    assert.equal(new BigNumber((await stablePriceOracle.price("foo12", 0, 3600).call())._hex, 16).toFixed(), 360000000000000000000);
+    assert.equal(new BigNumber((await stablePriceOracle.price("foo123", 0, 3600).call())._hex, 16).toFixed(), 360000000000000000000);
   });
 
 });
