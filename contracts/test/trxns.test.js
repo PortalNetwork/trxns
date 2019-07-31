@@ -14,8 +14,8 @@ contract('TRXNS', function(accounts) {
 
   before(async () => {
 		tns = await TNS.new();
-
-		registrar = await BaseRegistrar.deployed(tns.address, namehash.hash('trx'), {from: ownerAccount});
+    console.log('tns address', tns.address);
+		registrar = await BaseRegistrar.new(tns.address, namehash.hash('trx'), {from: ownerAccount});
 		await registrar.addController(controllerAccount, {from: ownerAccount});
 		await tns.setSubnodeOwner('0x0', sha3('trx'), registrar.address);
 	});
@@ -23,7 +23,7 @@ contract('TRXNS', function(accounts) {
   
   it("", async function() {
     try {
-
+      
     } catch (err) {
       console.log(err);
     }
