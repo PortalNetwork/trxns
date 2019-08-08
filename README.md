@@ -16,6 +16,8 @@ TNS is the Tron Name Service, a distributed, open, and extensible naming system 
 - [Integration](./docs/INTEGRATION.md)
 
 ## Tron Technical Stack
+![Tron Name Service](./assets/Tron-name-service.png)
+
 ![Tron Tech Stack](./assets/Tron-layer.png)
 
 ### State Layer
