@@ -13,6 +13,6 @@
   "author": "Portal Network",
   "license": "MIT",
   "dependencies": {
-    "tronweb": "^2.6.4"
+    "tronweb": "^5.1.0"
   }
 }
